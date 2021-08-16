@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { hotelListComponent } from './hotel-list/hotel-list.Component';
 import { StartRatingComponent } from './shared/Components/start_rating/star-rating.Component';
 import {replaceComma} from './shared/pipes/Replace-comma.pipes';
-
+// import { HotelListService } from './hotel-list/hotel-list.service'
 
 @NgModule({
   declarations: [ // Enregistrer composant

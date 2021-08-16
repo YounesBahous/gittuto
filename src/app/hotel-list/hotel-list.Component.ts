@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { HotelListService } from './hotel-list.service'
 
 import { Ihotel} from './hotel'
 
@@ -7,6 +8,8 @@ import { Ihotel} from './hotel'
   selector:'app-hotel-list',
   templateUrl:'./hotel-list.component.html',
   styleUrls: ['./hotel-list.Component.css']
+
+
 
 
 })
@@ -24,46 +27,20 @@ export class hotelListComponent implements OnInit{
       this.showBadge=!this.showBadge;
     }
 
-    public hotels: Ihotel[]=[
-
-      {
-        hotelId:1,
-        hotelName:'Agadir Beach,',
-        price:205.3,
-        imageUrl:"/assets/images/agadir.jpg",
-        rating:3.5
-      },
-      {
-        hotelId:2,
-        hotelName:'Marrakech ville,',
-        price:105.3,
-        imageUrl:"/assets/images/Marakkech.jpg",
-        rating:5
-      },
-      {
-        hotelId:3,
-        hotelName:'casablanca ville,',
-        price:305.3,
-        imageUrl:"/assets/images/casa.jpg",
-        rating:4
-      },
-      {
-        hotelId:4,
-        hotelName:'Ifran ville',
-        price:100.09,
-        imageUrl:"/assets/images/ifran.jpg",
-        rating:2.5
-      },
-
-
-    ]
+    public hotels: Ihotel[]=[];
 
     private _hotelFilter ="Recherche" ;
     public filteredHotels: Ihotel[] =[];
     // private hotelFilter ='Recherche';
+    public receiveRating:string="" ;
+
+    constructor(private hotelListService : HotelListService){
+
+    }
 
 
     ngOnInit(){
+      this.hotels = this.hotelListService.getHotels();
       this.filteredHotels = this.hotels;
       this.hotelFilter='';
     }
@@ -76,6 +53,10 @@ export class hotelListComponent implements OnInit{
       this._hotelFilter = filter;
 
       this.filteredHotels = this.hotelFilter ? this.filterdHotel(this._hotelFilter):this.hotels;
+    }
+
+    public receiveRatingClick(message:string):void {
+      this.receiveRating=message;
     }
 
     private filterdHotel(criteria:string):Ihotel[]{

@@ -49,7 +49,7 @@
                     <!-- <span class="badge badge-pill badge-info" style="color:blue;" > Nouveau</span> -->
                     <span class="badge badge-pill badge-info" *ngIf="showBadge" style="color:blue;"> Nouveau</span>
                     
-                    <app-star-rating [rating] ="hotel.rating" ></app-star-rating>
+                    <app-star-rating [rating] ="hotel.rating"  (StarRatingClicked)="receiveRatingClick($event) " ></app-star-rating>
                     
                   </div>
               </div>
